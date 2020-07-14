@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Microfrontend Demo</title>
+  <meta name="importmap-type" content="systemjs-importmap" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <!-- <script type="systemjs-importmap" src="https://storage.googleapis.com/react.microfrontends.app/importmap.json"></script> -->
+  <% if (isLocal) { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {        
+        "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.3.0/lib/system/single-spa.min.js",
+        "@apw-demo/root-config": "//localhost:9000/apw-demo-root-config.js",
+        "@apw-demo/navbar": "//localhost:9001/apw-demo-navbar.js",
+        "@apw-demo/employees": "//localhost:9002/apw-demo-employees.js",
+        "@apw-demo/employee-details": "//localhost:4200/main.js",
+        "@apw-demo/vue-app": "//localhost:8080/main.js",
+        "@apw-demo/sobral": "//localhost:9005/apw-demo-sobral.js",
+        "rxjs": "https://cdn.jsdelivr.net/npm/@esm-bundle/rxjs/system/rxjs.min.js",
+        "rxjs/operators": "https://cdn.jsdelivr.net/npm/@esm-bundle/rxjs/system/rxjs-operators.min.js"
+      }
+    }
+  </script>
+  <% } %>
+  <script src="https://unpkg.com/zone.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.3.1/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.min.js"></script>
+</head>
+<body>
+  <nav id="apw-navbar"></nav>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="apw-content"></div>
+      </div>
+    </div>
+  </div>  
+  <script>
+    System.import('@apw-demo/root-config');
+    // System.import('@apw-demo/styleguide');
+  </script>
+  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+</body>
+</html>
